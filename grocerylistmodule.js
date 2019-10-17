@@ -59,13 +59,6 @@ exports.remove = (item, qty) => {
             console.log(data);
             let jsonData = JSON.parse(data); // string to json object
             console.log(jsonData);
-            // jsonData.some(obj => {
-            //     if (obj.item === lowerItem) { // if item exists
-            //         const subPrice = obj.price / (obj.qty / qty);
-            //         obj.qty -= qty; // increase qty
-            //         obj.price -= subPrice; // increase price
-            //     }
-            // });
 
             const index = jsonData.findIndex(obj => {
                 return obj.item === lowerItem;
@@ -73,8 +66,8 @@ exports.remove = (item, qty) => {
             if (index !== -1) {
                 const obj = jsonData[index];
                 const subPrice = obj.price / (obj.qty / qty);
-                obj.qty -= qty; // increase qty
-                obj.price -= subPrice; // increase price
+                obj.qty -= qty; // deduct qty
+                obj.price -= subPrice; // deduct from price
                 if (obj.qty < 1) {
                     jsonData.splice(index, 1);
                 }
